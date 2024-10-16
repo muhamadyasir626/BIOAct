@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Area;
 use App\Models\Role;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +21,8 @@ Route::get('/', function () {
 
 Route::get('/register', function(){
     $roles = Role::all();
-    return view('auth.register', compact('roles'));
+    $areas = Area::all();
+    return view('auth.register', compact('roles','areas'));
 })->name('register');
 
 Route::middleware([

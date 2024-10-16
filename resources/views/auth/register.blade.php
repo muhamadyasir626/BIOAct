@@ -14,6 +14,7 @@
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
 
+
             <div>
                 <x-label for="nip" value="{{ __('NIP') }}" />
                 <x-input id="nip" class="block mt-1 w-full" type="text" name="nip" :value="old('nip')" required autofocus autocomplete="nip" />
@@ -30,13 +31,13 @@
             </div>
 
             <div class="mt-4">
-                <x-label for="no_telp" value="{{ __('Nomor Telepon') }}" />
-                <x-input id="no_telp" class="block mt-1 w-full" type="text" name="no_telp" :value="old('no_telp')" minlength="15" placeholder="62801-2345-6789" required autofocus autocomplete="no_telp" />
+                <x-label for="no_telepon" value="{{ __('Nomor Telepon') }}" />
+                <x-input id="no_telepon" class="block mt-1 w-full" type="text" name="no_telepon" :value="old('no_telepon')" minlength="15" placeholder="62801-2345-6789" required autofocus autocomplete="no_telepon" />
             </div>
             
             <div class="mt-4">
                 <x-label for="kode_pos" value="{{ __('Kode Pos') }}" />
-                <x-input id="kode_pos" class="block mt-1 w-full" type="text" name="kode_pos" :value="old('kode_pos')" required autofocus autocomplete="kode_pos" />
+                <x-input id="kode_pos" class="block mt-1 w-full" type="text" name="kode_pos" :value="old('kode_pos')" required autofocus autocomplete="kode_pos" oninput="searchPostalCode()" />
             </div>            
             
             <div class="mt-4">
@@ -60,23 +61,28 @@
             </div>
             
             <div class="mt-4">
-                <x-label for="role" :value="__('Jabatan')" />
+                <x-label for="role" :value="__('Bidang')" />
                 <select id="role" class="block mt-1 w-full" name="role" required autofocus>
                     <option value="">Select Options</option>
                     @foreach($roles as $role)
-                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        <option id="{{ $role->slug }}" value="{{ $role->id }}">{{ $role->name }}</option>
                     @endforeach
                 </select>
             </div>
 
-            <div class="mt-4">
+            <div class="mt-4" id="areaInput" style="display:none">
                 <x-label for="area" value="{{ __('Wilayah') }}" />
-                <x-input id="area" class="block mt-1 w-full" type="text" name="area" :value="old('area')" required autofocus autocomplete="area" />
+                <select id="area" class="block mt-1 w-full" name="area" autofocus>
+                    <option value="">Select Options</option>
+                    @foreach($areas as $area)
+                        <option id="{{ $area->slug }}" value="{{ $area->id }}">{{ $area->name }}</option>
+                    @endforeach
+                </select>
             </div>
 
-            <div class="mt-4">
+            <div class="mt-4" id="lkInput" style="display:none">
                 <x-label for="lembaga_konservasi" value="{{ __('Lembaga Konservasi') }}" />
-                <x-input id="lembaga_konservasi" class="block mt-1 w-full" type="text" name="lembaga_konservasi" :value="old('lembaga_konservas')" required autofocus autocomplete="lembaga_konservasi" />
+                <x-input id="lembaga_konservasi" class="block mt-1 w-full" type="text" name="lembaga_konservasi" :value="old('lembaga_konservas')"  autofocus autocomplete="lembaga_konservasi" />
             </div>
 
             <div class="mt-4">
@@ -116,5 +122,8 @@
                 </x-button>
             </div>
         </form>
+<script src="{{ asset('js/register.js') }}"></script>
+
     </x-authentication-card>
 </x-guest-layout>
+

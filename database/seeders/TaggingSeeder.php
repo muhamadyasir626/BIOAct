@@ -12,6 +12,6 @@ class TaggingSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        
     }
 }
