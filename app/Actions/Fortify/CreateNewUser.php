@@ -22,6 +22,7 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255'],
+            'jenis_kelamin' => ['required', 'string'],
             'nip' => ['required', 'string', 'min:18'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'no_telepon' => ['required', 'string', 'min:12'],
@@ -30,9 +31,10 @@ class CreateNewUser implements CreatesNewUsers
             'kabupaten' => ['required', 'string'],
             'kecamatan' => ['required', 'string'],
             'kelurahan' => ['required', 'string'],
+            'alamat_lengkap' => ['required', 'string'],
             'role' => ['required', 'integer'],
             'id_lk' => ['nullable', 'integer'],
-            'id_area' => ['nullable', 'integer'],
+            'area' => ['nullable', 'string'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
@@ -40,6 +42,7 @@ class CreateNewUser implements CreatesNewUsers
         return User::create([
             'name' => $input['name'],
             'username' => $input['username'],
+            'jenis_kelamin' => $input['jenis_kelamin'],
             'nip' => $input['nip'],
             'email' => $input['email'],
             'no_telepon' => $input['no_telepon'],
@@ -48,9 +51,10 @@ class CreateNewUser implements CreatesNewUsers
             'kabupaten' => $input['kabupaten'],
             'kecamatan' => $input['kecamatan'],
             'kelurahan' => $input['kelurahan'],
+            'alamat_lengkap' => $input['alamat_lengkap'],
             'role' => $input['role'],
             'id_lk' => $input['id_lk'] ?? null,
-            'id_area' => $input['id_area'] ?? null,
+            'area' => $input['id_area'] ?? null,
             'password' => Hash::make($input['password']),
         ]);
     }

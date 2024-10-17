@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\postalcodeAPI;
+use App\Http\Controllers\WilayahController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

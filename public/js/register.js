@@ -1,3 +1,5 @@
+document.getElementById('role').addEventListener('change', toggleinput);
+
 function toggleinput() {
   var roleSelect = document.getElementById('role');
   var areaInput = document.getElementById('areaInput');
@@ -16,21 +18,22 @@ function toggleinput() {
   }
 }
 
-document.getElementById('role').addEventListener('change', toggleinput);
+document.getElementById('kode_pos').addEventListener('input', debounce(searchPostalCode, 1000));
 
 function searchPostalCode() {
   var postalCode = document.getElementById('kode_pos').value;
 
-  if (postalCode.length > 2) {
+  if (postalCode.length === 5) {
     fetch(`/api/search?postalCode=${postalCode}`)
       .then(response => response.json())
       .then(data => {
-        console.log("Data received: ", data);
-        if (data.length > 0) {
-          document.getElementById('provinsi').value = data[0].province;
-          document.getElementById('kabupaten').value = data[0].regency;
-          document.getElementById('kecamatan').value = data[0].district;
-          document.getElementById('kelurahan').value = data[0].village;
+        // console.log("Data received: ", data);  
+        if (data.data && data.data.length > 0) {
+          var locationData = data.data[0];
+          document.getElementById('provinsi').value = locationData.province;
+          document.getElementById('kabupaten').value = locationData.regency;
+          document.getElementById('kecamatan').value = locationData.district;
+          document.getElementById('kelurahan').value = locationData.village;
         } else {
           document.getElementById('provinsi').value = '';
           document.getElementById('kabupaten').value = '';
@@ -40,6 +43,10 @@ function searchPostalCode() {
       })
       .catch(error => {
         console.error('Error fetching data:', error);
+        document.getElementById('provinsi').value = '';
+        document.getElementById('kabupaten').value = '';
+        document.getElementById('kecamatan').value = '';
+        document.getElementById('kelurahan').value = '';
     })
   } else {
     document.getElementById('provinsi').value = '';
@@ -48,6 +55,7 @@ function searchPostalCode() {
     document.getElementById('kelurahan').value = '';
   }
 }
+
 
 function debounce(func, wait) {
   let timeout;
@@ -61,4 +69,3 @@ function debounce(func, wait) {
   };
 }
 
-document.getElementById('kode_pos').addEventListener('input', debounce(searchPostalCode, 300));

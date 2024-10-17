@@ -28,15 +28,17 @@ class User extends Authenticatable
         'username',
         'nip',
         'email',
+        'jenis_kelamin',
         'no_telepon',
         'kode_pos',
         'provinsi',
         'kabupaten',
         'kecamatan',
         'kelurahan',
+        'alamat_lengkap',
         'role',
         'id_lk',
-        'id_area',
+        'wilayah',
         'password',
     ];
     
@@ -74,12 +76,20 @@ class User extends Authenticatable
     public function Role(){
         return $this->hasManny(Role::class);
     }
+    
+    public function ListSpesies(){
+        return $this->hasManny(List_Spesies::class);
+    }
 
-    public function Area(){
-        return $this->hasManny(Area::class);
+    public function ListLk(){
+        return $this->hasManny(List_Lk::class);
+    }
+
+    public function ListUpt(){
+        return $this->hasManny(List_Upt::class);
     }
 
     public function LembagaKonservasi(){
-        return $this->hasOne(Lembaga_konservasi::class);
+        return $this->hasOne(Lembaga_Konservasi::class);
     }
 }

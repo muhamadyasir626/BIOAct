@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('username')->unique();
+            $table->boolean('jenis_kelamin');
             $table->string('nip')->unique();
             $table->string('email')->unique();
             $table->string('no_telepon');
@@ -24,13 +25,16 @@ return new class extends Migration
             $table->string('kecamatan');
             $table->string('kelurahan');
             $table->foreignId('role')->nullable()->references('id')->on('roles');
-            $table->foreignId('id_lk')->nullable()->references('id')->on('lembaga_konservasis');
-            $table->foreignId('id_area')->nullable()->references('id')->on('areas');
+            $table->foreignId('id_lk')->nullable()->references('id')->on('list_lk');
+            $table->foreignId('id_upt')->nullable()->references('id')->on('list_upt');
+            $table->foreignId('id_spesiliasasi')->nullable()->references('id')->on('list_spesialisasi');
+            $table->string('area')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('status_permission')->default(0);
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
-            $table->string('profile_photo_path', 2048)->nullable();
+            // $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
         });
     }

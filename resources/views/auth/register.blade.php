@@ -14,12 +14,26 @@
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
 
-
             <div>
                 <x-label for="nip" value="{{ __('NIP') }}" />
                 <x-input id="nip" class="block mt-1 w-full" type="text" name="nip" :value="old('nip')" required autofocus autocomplete="nip" />
             </div>
             
+            <div>
+                <x-label for="gender" :value="__('Jenis Kelamin')" />
+
+                <div class="mt-1">
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="gender" value="1" {{ old('gender') == 'Laki-laki' ? 'checked' : '' }}>
+                        <span class="ml-2">{{ __('Laki-laki') }}</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="gender" value="0" {{ old('gender') == 'Perempuan' ? 'checked' : '' }}>
+                        <span class="ml-2">{{ __('Perempuan') }}</span>
+                    </label>
+                </div>
+            </div>
+
             <div>
                 <x-label for="username" value="{{ __('Username') }}" />
                 <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus autocomplete="username" />
@@ -59,6 +73,12 @@
                 <x-label for="kelurahan" value="{{ __('Kelurahan') }}" />
                 <x-input id="kelurahan" class="block mt-1 w-full" type="text" name="kelurahan" :value="old('kelurahan')" required autofocus autocomplete="kelurahan" />
             </div>
+
+            <div>
+                <x-label for="alamat_lengkap" value="{{ __('Alamat Lengkap') }}" />
+                <x-input id="alamat_lengkap" class="block mt-1 w-full" type="text" name="alamat_lengkap" :value="old('alamat_lengkap')" required autofocus autocomplete="address" />
+            </div>
+
             
             <div class="mt-4">
                 <x-label for="role" :value="__('Bidang')" />

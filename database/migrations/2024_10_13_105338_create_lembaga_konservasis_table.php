@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('lembaga_konservasis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_area')->references('id')->on('areas');
+            $table->foreignId('id_Lk')->references('id')->on('list_lks');
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('provinsi');
