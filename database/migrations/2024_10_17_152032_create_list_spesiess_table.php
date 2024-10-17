@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('list__spesiess', function (Blueprint $table) {
+        Schema::create('list_spesiess', function (Blueprint $table) {
             $table->id();
             $table->string('name',255);
             $table->string('slug',255)->unique();
