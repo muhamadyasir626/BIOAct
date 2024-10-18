@@ -21,8 +21,8 @@ Route::get('/', function () {
 
 Route::get('/register', function(){
     $roles = Role::all();
-    $areas = Area::all();
-    return view('auth.register', compact('roles','areas'));
+    // $areas = Area::all();
+    return view('auth.register', compact('roles'));
 })->name('register');
 
 Route::middleware([
