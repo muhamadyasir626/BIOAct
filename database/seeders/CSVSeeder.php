@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\List_Lk;
+use App\Models\List_Upt;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,16 +14,50 @@ class CSVSeeder extends Seeder
      */
     public function run(): void
     {
-        $csvFile = base_path('data/list_lk.csv');
-        $data = array_map('str_getcsv',file($csvFile));
+        // =========================== LIST LK =====================
+        // $csvFile = base_path('resources\data\list_lk.csv');
+        // $data = array_map(function ($line) {
+        //     return str_getcsv($line, ','); 
+        // }, file($csvFile));
+    
+        // array_shift($data); 
+    
+        // // $filteredData = array_filter($data, function ($row) {
+        // //     return count($row) > 1;
+        // // });
 
-        array_shift($data);
+        // // dd($filteredData);
+        // // dd($data);
+    
+        // foreach ($data as $row) {
+        //     List_Lk::Create([
+        //         'name' => $row[0], 
+        //         'slug' => $row[1], 
+        //     ]);
+        // }
 
-        foreach($data as $row){
-            Area::Create([
-                'name' => $row[1],
-                'slug' => $row[2],
+        // ========================================= LIST UPT =====================
+        $csvFile = base_path('resources\data\list_upt.csv');
+        $data = array_map(function ($line) {
+            return str_getcsv($line, ';'); 
+        }, file($csvFile));
+    
+        array_shift($data); 
+    
+        // $filteredData = array_filter($data, function ($row) {
+        //     return count($row) > 1;
+        // });
+
+        // dd($filteredData);
+        // dd($data);
+    
+        foreach ($data as $row) {
+            List_Upt::Create([
+                'name' => $row[1], 
+                'slug' => $row[2], 
             ]);
         }
+    
     }
+    
 }

@@ -13,6 +13,8 @@ class List_Upt extends Model
         'id'
     ];
 
+    protected $table = 'list_upts';
+
     public function User(){
         return $this->hasOne(User::class);
     }

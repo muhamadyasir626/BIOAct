@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('monitoring_investasis', function (Blueprint $table) {
+        Schema::create('monitoring_investariss', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_lk')->references('id')->on('lembaga_konservasis');
+            $table->foreignId('id_lk')->references('id')->on('lembaga_konservasis')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('jumlah_karyawan_laki');
             $table->integer('jumlah_karyawan_perempuan');
             $table->integer('total_karyawan');

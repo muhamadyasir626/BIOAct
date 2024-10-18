@@ -24,10 +24,10 @@ return new class extends Migration
             $table->string('kabupaten');
             $table->string('kecamatan');
             $table->string('kelurahan');
-            $table->foreignId('role')->nullable()->references('id')->on('roles');
-            $table->foreignId('id_lk')->nullable()->references('id')->on('list_lk');
-            $table->foreignId('id_upt')->nullable()->references('id')->on('list_upt');
-            $table->foreignId('id_spesiliasasi')->nullable()->references('id')->on('list_spesialisasi');
+            $table->foreignId('role')->nullable()->references('id')->on('roles')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_lk')->nullable()->references('id')->on('list_lks')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_upt')->nullable()->references('id')->on('list_upts')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_spesiliasasi')->nullable()->references('id')->on('list_spesiess')->onDelete('cascade')->onUpdate('cascade');
             $table->string('area')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

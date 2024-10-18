@@ -1,0 +1,10 @@
+php artisan migrate --path=database\migrations\2024_10_13_004140_create_roles_table.php
+php artisan migrate --path=database\migrations\2024_10_13_105034_create_list_upts_table.php
+php artisan migrate --path=database\migrations\2024_10_17_152032_create_list_spesiess_table.php
+php artisan migrate --path=database\migrations\2024_10_13_105840_create_taggings_table.php
+php artisan migrate --path=database\migrations\2024_10_17_063459_create_list_lks_table.php
+php artisan migrate --path=database\migrations\2024_10_13_110449_create_monitoring_investariss_table.php
+php artisan migrate --path=database\migrations\2024_10_13_105338_create_lembaga_konservasis_table.php
+php artisan migrate --path=database\migrations\2014_10_12_000000_create_users_table.php
+php artisan migrate --path=database\migrations\2024_10_13_110846_create_satwas_table.php
+php artisan migrate 

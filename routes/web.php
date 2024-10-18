@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\Area;
+use App\Models\List_Lk;
+use App\Models\List_Upt;
 use App\Models\Role;
 use Illuminate\Support\Facades\Route;
 
@@ -21,8 +22,9 @@ Route::get('/', function () {
 
 Route::get('/register', function(){
     $roles = Role::all();
-    // $areas = Area::all();
-    return view('auth.register', compact('roles'));
+    $list_lks = List_Lk::all();
+    $list_upts = List_Upt::all();
+    return view('auth.register', compact('roles','list_lks','list_upts'));
 })->name('register');
 
 Route::middleware([
