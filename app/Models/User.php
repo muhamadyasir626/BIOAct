@@ -23,24 +23,26 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'username',
-        'nip',
-        'email',
-        'jenis_kelamin',
-        'no_telepon',
-        'kode_pos',
-        'provinsi',
-        'kabupaten',
-        'kecamatan',
-        'kelurahan',
-        'alamat_lengkap',
-        'role',
-        'id_lk',
-        'wilayah',
-        'password',
-    ];
+    // protected $fillable = [
+    //     'name',
+    //     'username',
+    //     'nip',
+    //     'email',
+    //     'jenis_kelamin',
+    //     'no_telepon',
+    //     'kode_pos',
+    //     'provinsi',
+    //     'kabupaten',
+    //     'kecamatan',
+    //     'kelurahan',
+    //     'alamat_lengkap',
+    //     'role',
+    //     'id_lk',
+    //     'wilayah',
+    //     'password',
+    // ];
+
+    protected $guarded =['id'];
     
 
     /**
