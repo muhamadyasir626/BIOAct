@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('satwas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_lk')->references('id')->on('lembaga_konservasis');
+            $table->foreignId('id_lk')->references('id')->on('lembaga_konservasis')->onDelete('cascade')->onUpdate('cascade');
             $table->string('jenis_koleksi',50);
             $table->string('kelas_satwa',50);
             $table->string('tipe_spesies',50);

@@ -13,6 +13,8 @@ class List_Lk extends Model
         'id',
     ];
 
+     protected $table = 'list_lks';
+
     public function User(){
         return $this->hasOne(User::class);
     }
