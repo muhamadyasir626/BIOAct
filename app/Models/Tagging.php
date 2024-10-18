@@ -8,11 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Tagging extends Model
 {
     use HasFactory;
-    protected $fillable =[
-        'name'
-    ];
+    // protected $fillable =[
+    //     'name'
+    // ];
 
+    protected $guarded = [
+        'id'
+    ];
     public function Satwa(){
-        return $this->hasOne(Satwa::class);
+        return $this->hasMany(Satwa::class);
     }
 }

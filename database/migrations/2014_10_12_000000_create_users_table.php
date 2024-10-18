@@ -13,22 +13,23 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('username')->unique();
+            $table->string('name',255);
+            $table->string('username',255)->unique();
             $table->boolean('jenis_kelamin');
-            $table->string('nip')->unique();
-            $table->string('email')->unique();
-            $table->string('no_telepon');
-            $table->string('kode_pos');
-            $table->string('provinsi');
-            $table->string('kabupaten');
-            $table->string('kecamatan');
-            $table->string('kelurahan');
+            $table->string('nip',20)->unique();
+            $table->string('email',255)->unique();
+            $table->string('no_telepon',20);
+            $table->string('kode_pos',5);
+            $table->string('provinsi',50);
+            $table->string('kabupaten',50);
+            $table->string('kecamatan',50);
+            $table->string('kelurahan',50);
             $table->foreignId('role')->nullable()->references('id')->on('roles')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('id_lk')->nullable()->references('id')->on('list_lks')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('id_upt')->nullable()->references('id')->on('list_upts')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('id_spesiliasasi')->nullable()->references('id')->on('list_spesiess')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('area')->nullable();
+            $table->foreignId('id_spesiess')->nullable()->references('id')->on('list_spesiess')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_bentuk')->nullable()->references('id')->on('list_upts')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_wilayah')->nullable()->references('id')->on('list_upts')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('status_permission')->default(0);

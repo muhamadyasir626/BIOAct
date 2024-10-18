@@ -1,20 +1,20 @@
-﻿Kode_Wilayah;Wilayah;Slug
-1;BBKSDA Jawa Barat;bbksda_jawa_barat
-2;BBKSDA Jawa Timur;bbksda_jawa_timur
-3;BBKSDA Riau;bbksda_riau
-4;BBKSDA Sulawesi Selatan;bbksda_sulawesi_selatan
-5;BBKSDA Sumatera Utara;bbksda_sumatera_utara
-6;BKSDA Aceh;bksda_aceh
-7;BKSDA Bali;bksda_bali
-8;BKSDA Bengkulu Lampung;bksda_bengkulu_lampung
-9;BKSDA Jakarta;bksda_jakarta
-10;BKSDA Jambi;bksda_jambi
-11;BKSDA Jawa Tengah;bksda_jawa_tengah
-12;BKSDA Kalimantan Barat;bksda_kalimantan_barat
-13;BKSDA Kalimantan Selatan;bksda_kalimantan_selatan
-14;BKSDA Kalimantan Timur;bksda_kalimantan_timur
-15;BKSDA NTB;bksda_ntb
-16;BKSDA Sulawesi Utara ;bksda_sulawesi_utara_
-17;BKSDA Sumatera Barat;bksda_sumatera_barat
-18;BKSDA Sumatera Selatan;bksda_sumatera_selatan
-19;BKSDA Yogyakarta;bksda_yogyakarta
+Kode_Wilayah,Bentu UPT,slug bentuk UPT,Wilayah,Slug_wilayah
+1,BBKSDA,bbksda,Jawa Barat,jawa_barat
+2,BBKSDA,bbksda,Jawa Timur,jawa_timur
+3,BBKSDA,bbksda,Riau,riau
+4,BBKSDA,bbksda,Sulawesi Selatan,sulawesi_selatan
+5,BBKSDA,bbksda,Sumatera Utara,sumatera_utara
+6,BKSDA,bksda,Aceh,aceh
+7,BKSDA,bksda,Bali,bali
+8,BKSDA,bksda,Bengkulu Lampung,bengkulu_lampung
+9,BKSDA,bksda,Jakarta,jakarta
+10,BKSDA,bksda,Jambi,jambi
+11,BKSDA,bksda,Jawa Tengah,jawa_tengah
+12,BKSDA,bksda,Kalimantan Barat,kalimantan_barat
+13,BKSDA,bksda,Kalimantan Selatan,kalimantan_selatan
+14,BKSDA,bksda,Kalimantan Timur,kalimantan_timur
+15,BKSDA,bksda,NTB,ntb
+16,BKSDA,bksda,Sulawesi Utara ,sulawesi_utara_
+17,BKSDA,bksda,Sumatera Barat,sumatera_barat
+18,BKSDA,bksda,Sumatera Selatan,sumatera_selatan
+19,BKSDA,bksda,Yogyakarta,yogyakarta

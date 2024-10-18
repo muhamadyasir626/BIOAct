@@ -13,11 +13,11 @@ class Satwa extends Model
 
     ];
 
-    public function Lembaga_Konservasi(){
-        return $this-> hasMany(Lembaga_konservasi::class);
+    public function List_lk(){
+        return $this-> hasOne(List_Lk::class);
     }
 
     public function Tagging(){
-        return $this-> hasMany(Tagging::class);
+        return $this-> hasOne(Tagging::class);
     }
 }

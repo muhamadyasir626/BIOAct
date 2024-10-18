@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('taggings', function (Blueprint $table) {
             $table->id();
-            $table->string('jenis_tagging');
+            $table->string('jenis_tagging',50);
             $table->string('slug_jenis_tagging')->unique();
             $table->timestamps();
         });
