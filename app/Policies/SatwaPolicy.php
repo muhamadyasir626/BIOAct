@@ -13,7 +13,9 @@ class SatwaPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        // return $user->hasPermissionTo('view any satwa');
+
+        return true;
     }
 
     /**
@@ -21,7 +23,8 @@ class SatwaPolicy
      */
     public function view(User $user, Satwa $satwa): bool
     {
-        //
+        return true;
+        
     }
 
     /**
@@ -29,7 +32,8 @@ class SatwaPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
+        
     }
 
     /**
@@ -37,7 +41,8 @@ class SatwaPolicy
      */
     public function update(User $user, Satwa $satwa): bool
     {
-        //
+        return true;
+        
     }
 
     /**
@@ -45,7 +50,8 @@ class SatwaPolicy
      */
     public function delete(User $user, Satwa $satwa): bool
     {
-        //
+        return true;
+        
     }
 
     /**
@@ -53,7 +59,8 @@ class SatwaPolicy
      */
     public function restore(User $user, Satwa $satwa): bool
     {
-        //
+        return true;
+        
     }
 
     /**
@@ -61,6 +68,7 @@ class SatwaPolicy
      */
     public function forceDelete(User $user, Satwa $satwa): bool
     {
-        //
+        return true;
+        
     }
 }

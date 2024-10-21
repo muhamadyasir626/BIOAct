@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -17,6 +18,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    // use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -76,19 +78,19 @@ class User extends Authenticatable
     ];
 
     public function Role(){
-        return $this->hasManny(Role::class);
+        return $this->belongsTo(Role::class);
     }
     
     public function ListSpesies(){
-        return $this->hasManny(List_Spesies::class);
+        return $this->hasOne(List_Spesies::class);
     }
 
     public function ListLk(){
-        return $this->hasManny(List_Lk::class);
+        return $this->hasOne(List_Lk::class);
     }
 
     public function ListUpt(){
-        return $this->hasManny(List_Upt::class);
+        return $this->hasOne(List_Upt::class);
     }
 
     public function LembagaKonservasi(){

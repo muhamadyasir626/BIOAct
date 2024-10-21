@@ -14,17 +14,17 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         Role::create([
-            'name'=> 'Komisi Keamanan Hayati (KKH)',
-            'slug' => 'komisi_keamanan_hayati',
+            'name'=> 'Konservasi Keanekaragaman Hayati Spesies dan Genetik',
+            'slug' => 'konservasi_keanekaragaman_hayati_spesies_dan_genetik',
         ]);
 
         Role::create([
-            'name'=> 'Lembaga Konservasi (LK)',
+            'name'=> 'Lembaga Konservasi',
             'slug' => 'lembaga_konservasi',
         ]);
 
         Role::create([
-            'name'=> 'Unit Pelaksana Teknis (UPT)',
+            'name'=> 'Unit Pelaksana Teknis',
             'slug' => 'unit_pelaksana_teknis',
         ]);
 
@@ -34,8 +34,8 @@ class RoleSeeder extends Seeder
         ]);
 
         Role::create([
-            'name'=> 'Keeper',
-            'slug' => 'keeper',
+            'name'=> 'Studbook Keeper',
+            'slug' => 'studbook_keeper',
         ]);
 
         Role::create([
