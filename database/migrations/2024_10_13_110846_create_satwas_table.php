@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('satwas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_lk')->references('id')->on('lembaga_konservasis')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_lk')->constrained('id')->on('lembaga_konservasis')->onDelete('cascade')->onUpdate('cascade');
             $table->string('jenis_koleksi',50);
             $table->string('kelas_satwa',50);
             $table->string('tipe_spesies',50);
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->integer('jumlah_betina');
             $table->integer('total_jenis');
             $table->date('tanggal_tagging');
-            $table->foreignId('id_tagging')->references('id')->on('taggings');
+            $table->foreignId('id_tagging')->constrained('id')->on('taggings');
             $table->text('kode_tagging');
             $table->text('alasan_belum_tagging');
             $table->string('ba_tagging');

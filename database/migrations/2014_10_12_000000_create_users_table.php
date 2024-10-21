@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('username')->unique();
-            $table->boolean('jenis_kelamin');
+            $table->string('jenis_kelamin'); // Pertimbangkan mengubah menjadi enum jika lebih dari dua jenis kelamin
             $table->string('nip')->unique();
             $table->string('email')->unique();
             $table->string('no_telepon');
@@ -24,17 +24,15 @@ return new class extends Migration
             $table->string('kabupaten');
             $table->string('kecamatan');
             $table->string('kelurahan');
-            $table->foreignId('role')->nullable()->references('id')->on('roles')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('id_lk')->nullable()->references('id')->on('list_lks')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('id_upt')->nullable()->references('id')->on('list_upts')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('id_spesiliasasi')->nullable()->references('id')->on('list_spesiess')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('role_id')->nullable()->constrained('roles')->onDelete('cascade'); // Ganti 'role' dengan 'role_id'
+            $table->foreignId('id_lk')->nullable()->constrained('list_lks')->onDelete('cascade');
+            $table->foreignId('id_upt')->nullable()->constrained('list_upts')->onDelete('cascade');
+            $table->foreignId('id_spesies')->nullable()->constrained('list_spesiess')->onDelete('cascade');
             $table->string('area')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('status_permission')->default(0);
             $table->rememberToken();
-            $table->foreignId('current_team_id')->nullable();
-            // $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
         });
     }
