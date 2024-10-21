@@ -4,6 +4,8 @@ use App\Http\Controllers\postalcodeAPI;
 use App\Http\Controllers\WilayahController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Species;
+use App\Models\Provinsi;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/search',[postalcodeAPI::class,'search']);
+
+Route::get('/provinsi', function() {
+    return response()->json(Provinsi::all());
+});
+
+
