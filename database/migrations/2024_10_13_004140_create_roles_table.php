@@ -13,14 +13,9 @@ return new class extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-<<<<<<< Updated upstream
-            $table->string('name',50);
-            $table->string('slug',50)->unique();
-=======
             $table->string('name',255);
             $table->string('tag',10)->unique();
             $table->string('slug',255)->unique();
->>>>>>> Stashed changes
             $table->timestamps();
         });
     }

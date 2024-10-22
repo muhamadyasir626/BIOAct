@@ -14,24 +14,19 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         Role::create([
-<<<<<<< Updated upstream
-            'name'=> 'Komisi Keamanan Hayati (KKH)',
-            'slug' => 'komisi_keamanan_hayati',
-=======
             'name'=> 'Konservasi Keanekaragaman Hayati Spesies dan Genetik',
             'slug' => 'konservasi_keanekaragaman_hayati_spesies_dan_genetik',
             'tag' => 'KKHSG',
->>>>>>> Stashed changes
         ]);
 
         Role::create([
-            'name'=> 'Lembaga Konservasi (LK)',
+            'name'=> 'Lembaga Konservasi',
             'slug' => 'lembaga_konservasi',
             'tag' => 'LK',
         ]);
 
         Role::create([
-            'name'=> 'Unit Pelaksana Teknis (UPT)',
+            'name'=> 'Unit Pelaksana Teknis',
             'slug' => 'unit_pelaksana_teknis',
             'tag' => 'UPT',
 
@@ -45,15 +40,10 @@ class RoleSeeder extends Seeder
         ]);
 
         Role::create([
-<<<<<<< Updated upstream
-            'name'=> 'Keeper',
-            'slug' => 'keeper',
-=======
             'name'=> 'Studbook Keeper',
             'slug' => 'studbook_keeper',
             'tag' => 'SBK',
 
->>>>>>> Stashed changes
         ]);
 
         Role::create([

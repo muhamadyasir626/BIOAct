@@ -39,7 +39,7 @@ class CSVSeeder extends Seeder
         // ========================================= LIST UPT =====================
         $csvFile = base_path('resources\data\list_upt.csv');
         $data = array_map(function ($line) {
-            return str_getcsv($line, ','); 
+            return str_getcsv($line, ';'); 
         }, file($csvFile));
     
         array_shift($data); 
@@ -53,10 +53,8 @@ class CSVSeeder extends Seeder
     
         foreach ($data as $row) {
             List_Upt::Create([
-                'bentuk_UPT' => $row[1], 
-                'slug_bentuk_upt' => $row[2], 
-                'wilayah' => $row[3], 
-                'slug_wilayah' => $row[4], 
+                'name' => $row[1], 
+                'slug' => $row[2], 
             ]);
         }
     

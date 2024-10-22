@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('list_upts', function (Blueprint $table) {
             $table->id();
-            $table->string('bentuk_upt',50);
-            $table->string('slug_bentuk_upt',50);
-            $table->string('wilayah',50);
-            $table->string('slug_wilayah',50);
+            $table->string('name',255);
+            $table->string('slug',255)->unique();
             $table->timestamps();
         });
     }

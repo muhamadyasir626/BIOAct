@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('monitoring_investariss', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_lk')->references('id')->on('lembaga_konservasis')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_lk')->constrained('id')->on('lembaga_konservasis')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('jumlah_karyawan_laki');
             $table->integer('jumlah_karyawan_perempuan');
             $table->integer('total_karyawan');
