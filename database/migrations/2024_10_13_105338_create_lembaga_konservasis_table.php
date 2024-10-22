@@ -13,8 +13,14 @@ return new class extends Migration
     {
         Schema::create('lembaga_konservasis', function (Blueprint $table) {
             $table->id();
+<<<<<<< Updated upstream
             $table->foreignId('id_Lk')->references('id')->on('list_lks')->onDelete('cascade')->onUpdate('cascade');
             $table->string('name', 255);
+=======
+            $table->foreignId('id_Lk')->constrained('id')->on('list_lks')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('name');
+            $table->string('alamat');
+>>>>>>> Stashed changes
             $table->string('slug')->unique();
             $table->string('provinsi',50);
             $table->string('kota_kabupaten',50);
