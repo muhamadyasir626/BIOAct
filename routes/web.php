@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->name('filament.dashboard.auth.login');
 
 Route::get('/register', function(){
     $roles = Role::all();

@@ -18,6 +18,9 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Filament\Events\ServingFilament; // Import event
+use Illuminate\Support\Facades\Event;  // Import Event facade
+
 class DashboardPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -58,10 +61,15 @@ class DashboardPanelProvider extends PanelProvider
                 // \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make()
             ]);
 
-        // Dynamically set brand name once we know user is available
-        if (Auth::check()) {
-            $panel->brandName(Auth::user()->role->name);
-        }
+        Event::listen(ServingFilament::class, function () use ($panel) {
+            if (Auth::check()) {
+                $user = Auth::user();
+
+                if ($user->status_permission == 1) {
+                    $panel->brandName(Auth::user()->role->tag);
+                } 
+            }
+        });
 
         return $panel;
     }

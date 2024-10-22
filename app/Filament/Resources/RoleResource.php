@@ -7,6 +7,7 @@ use App\Models\Role;
 use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
@@ -28,15 +29,26 @@ class RoleResource extends Resource
     {
         return 'Manage Access'; 
     }
-
+   
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                TextInput::make('name')->label('Name'),
-            ]);
+        return $form->schema([
+            TextInput::make('name')
+                ->label('Name')
+                ->reactive()  
+                ->afterStateUpdated(function (callable $set, $state) {
+                    $set('slug', Str::slug($state, '_')); 
+                }),
+    
+            TextInput::make('slug')
+                ->label('Slug')
+                ->required()
+                ->readonly()
+                
+        ]);
     }
+
 
     public static function table(Table $table): Table
     {
@@ -47,7 +59,7 @@ class RoleResource extends Resource
                 
             ])
             ->filters([
-                //
+                
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
