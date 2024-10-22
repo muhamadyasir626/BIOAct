@@ -3,9 +3,7 @@
         <x-slot name="logo">
             {{-- <x-authentication-card-logo /> --}}
         </x-slot>
-
-        <x-validation-errors class="mb-4" />
-
+        
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
                 {{ session('status') }}
@@ -16,7 +14,8 @@
             @csrf
             <div class="w-1/2 mx-auto">
             <h1 class="text-xl font-bold text-indigo-700">Masuk</h1>
-            <div class="mt-6">
+            <x-validation-errors class="mb-4" />
+            <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" class="text-gray-700 font-semibold" />
                 <x-input id="email" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             </div>
@@ -40,10 +39,17 @@
                     <x-button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-md transition duration-150">
                         {{ __('Masuk') }}
                     </x-button>                
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register') }}">
-                        {{ __('Belum punya akun? Daftar disini') }}
+                    <a class="text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register') }}">
+                        {{ __('Belum punya akun?') }} 
+                        <span class="hover-text" style="text-decoration: underline;">{{ __('Daftar disini') }}</span>
                     </a>
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                    
+                    <style>
+                        .hover-text:hover {
+                            color: #4338ca; 
+                        }
+                    </style>                                      
+                    <a class="text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
                         {{ __('Lupa kata sandi?') }}
                     </a>
                 @endif
