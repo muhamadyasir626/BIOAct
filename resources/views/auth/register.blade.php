@@ -10,7 +10,7 @@
             @csrf
 
             <div class="flex flex-col justify-center mx-auto text-center mb-6 gap-3">
-                <h1 class="text-3xl font-bold text-indigo-800">Daftar Sekarang</h1>
+                <h1 style="font-weight: bolder; font-size: 32px; color:#4338ca;">Daftar</h1>
                 <p class="text-sm text-gray-500">Perhatikan dan isi kolom dengan hati-hati!</p>
             </div>       
 
@@ -92,7 +92,7 @@
                         </div>
 
                         <div id="keeperInput">
-                            <x-label for="keeper-search" value="Spesies (Masukkan menggunakan Bahasa Inggris)" class="text-gray-700 font-semibold" />
+                            <x-label for="keeper-search" value="Spesies (Masukkan nama hewan dalam Bahasa Inggris)" class="text-gray-700 font-semibold" />
                             <input type="text" id="keeper-search" name="keeper-search" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" placeholder="Cari Spesies" autocomplete="off" />
                             <ul id="keeper-dropdown" class="hidden border border-gray-300 mt-1 w-full rounded-md max-h-60 overflow-auto bg-white">
                             </ul>
@@ -114,8 +114,20 @@
 
                             <div>
                                 <x-label for="no_telepon" value="{{ __('Nomor HP') }}" class="text-gray-700 font-semibold" />
-                                <x-input id="no_telepon" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="no_telepon" :value="old('no_telepon')" minlength="15" placeholder="cth: 62801-2345-6789" required autofocus autocomplete="no_telepon" pattern="62[0-9]+*" title="Hanya angka diperbolehkan" />
-                                <style>
+                                <x-input id="no_telepon" 
+                                    class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" 
+                                    type="text" 
+                                    name="no_telepon" 
+                                    :value="old('no_telepon')" 
+                                    minlength="10" 
+                                    maxlength="15" 
+                                    placeholder="cth: 62801-2345-6789" 
+                                    required 
+                                    autofocus 
+                                    autocomplete="no_telepon" 
+                                    pattern="^62[0-9]*$" 
+                                    title="Nomor telepon harus dimulai dengan '62' dan hanya berisi angka." />
+                                    <style>
                                     input::placeholder {
                                         opacity: 0.5;
                                     }
@@ -191,13 +203,21 @@
             </div>
             @endif
 
-            <div class="flex flex-col items-center justify-center mt-4 gap-4">
-                <x-button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-md transition duration-150">
+            <div class="flex flex-col items-center justify-center mt-6 gap-4">
+                <x-button class="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-md transition duration-150">
                     {{ __('Daftar') }}
                 </x-button>
-                <a class="italic text-sm text-indigo-600 hover:text-indigo-800" href="{{ route('login') }}">
-                    {{ __('Sudah pernah daftar? Masuk disini') }}
+                <a class="italic text-sm hover:text-indigo-800" href="{{ route('login') }}">
+                    {{ __('Sudah pernah daftar?') }} 
+                    <span class="hover-text" style="text-decoration: underline;">{{ __('Masuk disini') }}</span>
                 </a>
+                
+                <style>
+                    .hover-text:hover {
+                        color: #4338ca;
+                    }
+                </style>                
+                
             </div>         
         </form>
 

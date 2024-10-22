@@ -5,7 +5,7 @@
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+            {{ __('Lupa kata sandi anda? Jangan khawatir, tuliskan email anda dan kami akan mengirim link untuk melakukan reset kata sandi.') }}
         </div>
 
         @if (session('status'))
@@ -28,10 +28,10 @@
             <!-- Action Button -->
             <div class="flex items-center justify-end mt-6 gap-4">
                 <x-button type="button" onclick="window.location.href='{{ route('login') }}'" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-md transition duration-150">
-                    {{ __('Back') }}
+                    {{ __('Kembali') }}
                 </x-button>
                 <x-button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-md transition duration-150">
-                    {{ __('Email Password Reset Link') }}
+                    {{ __('Kirim link reset password') }}
                 </x-button>
             </div>
             
