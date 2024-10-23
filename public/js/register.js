@@ -14,7 +14,12 @@ function toggleinput() {
     keeperInput.style.display = "none";
     typeUPT.style.display = "none";
 
-    if (selectedOptionId === "lembaga_konservasi") {
+    if (
+        selectedOptionId === "lembaga_konservasi" ||
+        selectedOptionId === "dokter_hewan" ||
+        selectedOptionId === "staff_keeper"
+    ) {
+        lkInput.style.display = "block";
         lkInput.style.display = "block";
     } else if (selectedOptionId === "unit_pelaksana_teknis") {
         typeUPT.style.display = "block";
@@ -189,3 +194,35 @@ fetch("https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json")
         });
     })
     .catch((error) => console.error("Error fetching provinces:", error));
+
+document
+    .getElementById("togglePassword")
+    .addEventListener("click", function () {
+        const passwordInput = document.getElementById("password");
+        const eyeIcon = document.getElementById("eyeIcon");
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            eyeIcon.setAttribute("stroke", "green"); // Ubah warna ikon
+        } else {
+            passwordInput.type = "password";
+            eyeIcon.setAttribute("stroke", "gray"); // Reset warna ikon
+        }
+    });
+
+document
+    .getElementById("togglePasswordConfirmation")
+    .addEventListener("click", function () {
+        const passwordConfirmationInput = document.getElementById(
+            "password_confirmation"
+        );
+        const eyeIconConfirmation = document.getElementById(
+            "eyeIconConfirmation"
+        );
+        if (passwordConfirmationInput.type === "password") {
+            passwordConfirmationInput.type = "text";
+            eyeIconConfirmation.setAttribute("stroke", "green"); // Ubah warna ikon
+        } else {
+            passwordConfirmationInput.type = "password";
+            eyeIconConfirmation.setAttribute("stroke", "gray"); // Reset warna ikon
+        }
+    });
