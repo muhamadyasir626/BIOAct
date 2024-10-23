@@ -16,8 +16,8 @@
             <h1 class="text-xl font-bold text-indigo-700">Masuk</h1>
             <x-validation-errors class="mb-4" />
             <div class="mt-4">
-                <x-label for="email" value="{{ __('Email') }}" class="text-gray-700 font-semibold" />
-                <x-input id="email" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                <x-label for="email" value="{{ __('Email/Username') }}" class="text-gray-700 font-semibold" />
+                <x-input id="email" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="email" :value="old('email')" required autofocus autocomplete="email" />
             </div>
 
             <div class="mt-4">

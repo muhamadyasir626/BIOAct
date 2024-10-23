@@ -2,23 +2,24 @@
 
 namespace App\Providers\Filament;
 
-use Filament\Http\Middleware\Authenticate;
-use Filament\Http\Middleware\DisableBladeIconComponents;
-use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages;
 use Filament\Panel;
+use Filament\Widgets;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Widgets;
-use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Filament\Http\Middleware\Authenticate;
+use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Filament\Events\ServingFilament; // Import event
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
-use Illuminate\Session\Middleware\StartSession;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use Filament\Events\ServingFilament; // Import event
+use Filament\Http\Middleware\DisableBladeIconComponents;
+use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Support\Facades\Event;  // Import Event facade
 
 class DashboardPanelProvider extends PanelProvider
@@ -53,6 +54,7 @@ class DashboardPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                \App\Http\Middleware\CheckPermission::class,
             ])
             ->authMiddleware([
                 Authenticate::class,
@@ -62,12 +64,12 @@ class DashboardPanelProvider extends PanelProvider
             ]);
 
         Event::listen(ServingFilament::class, function () use ($panel) {
-            if (Auth::check()) {
-                $user = Auth::user();
-
-                if ($user->status_permission == 1) {
-                    $panel->brandName(Auth::user()->role->tag);
-                } 
+            $user = Auth::user();
+            
+            if ($user && $user->status_permission == '1') {
+                $panel->brandName($user->role->tag);
+            } else {
+                return Redirect::route('permission');
             }
         });
 

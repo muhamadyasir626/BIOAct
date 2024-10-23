@@ -36,11 +36,17 @@ class RoleResource extends Resource
         return $form->schema([
             TextInput::make('name')
                 ->label('Name')
+                ->required()
                 ->reactive()  
                 ->afterStateUpdated(function (callable $set, $state) {
                     $set('slug', Str::slug($state, '_')); 
                 }),
     
+                TextInput::make('tag')
+                ->label('Tag')
+                ->required()
+                ->readonly(),            
+
             TextInput::make('slug')
                 ->label('Slug')
                 ->required()
@@ -55,7 +61,8 @@ class RoleResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')->label('Name')->searchable(),
-                TextColumn::make('slug')->label('Slug'),
+                // TextColumn::make('slug')->label('Slug'),
+                TextColumn::make('tag')->label('Tag')
                 
             ])
             ->filters([

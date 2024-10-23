@@ -58,7 +58,7 @@
                             <div>
                                 <x-label for="role" :value="__('Bidang')" class="text-gray-700 font-semibold" />
                                 <select id="role" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" name="role" required autofocus>
-                                    <option value="" disabled selected>Pilih Bidang</option>
+                                    <option value="" hidden>Pilih Bidang</option>
                                     @foreach($roles as $role)
                                         <option id="{{ $role->slug }}" value="{{ $role->id }}">{{ $role->name }}</option>
                                     @endforeach
@@ -81,14 +81,18 @@
                                 <select id="unit_pelaksana_teknis" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500">
                                     <option value="" disabled selected>Select a province</option>
                                 </select>
-                            </div>
-                            
-                                                      
+                            </div>                   
                         </div>
 
                         <div id="lkInput">
                             <x-label for="lembaga_konservasi" value="{{ __('Lembaga Konservasi') }}" class="text-gray-700 font-semibold" />
-                            <x-input id="lembaga_konservasi" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="lembaga_konservasi" :value="old('lembaga_konservasi')" autofocus autocomplete="lembaga_konservasi" />
+                            
+                            <select id="lembaga_konservasi" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" name="lembaga_konservasi" :value="old('lembaga_konservasi')" autofocus>
+                                <option value="" hidden>Select Lembaga Konservasi</option>
+                                @foreach($list_lks as $lk)
+                                        <option id="{{ $lk->slug }}" value="{{ $lk->id }}">{{ $lk->name }}</option>
+                                    @endforeach
+                            </select>
                         </div>
 
                         <div id="keeperInput">

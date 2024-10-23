@@ -8,3 +8,5 @@ php artisan migrate --path=database\migrations\2024_10_13_110449_create_monitori
 php artisan migrate --path=database\migrations\2014_10_12_000000_create_users_table.php
 php artisan migrate --path=database\migrations\2024_10_13_110846_create_satwas_table.php
 php artisan migrate 
+php artisan db:seed --class=RoleSeeder
+php artisan db:seed --class=CSVSeeder
