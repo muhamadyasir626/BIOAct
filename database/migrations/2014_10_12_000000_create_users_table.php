@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('kabupaten');
             $table->string('kecamatan');
             $table->string('kelurahan');
-            $table->foreignId('role_id')->nullable()->constrained('roles')->onDelete('cascade'); // Ganti 'role' dengan 'role_id'
+            $table->foreignId('role')->nullable()->constrained('roles')->onDelete('cascade'); // Ganti 'role' dengan 'role_id'
             $table->foreignId('id_lk')->nullable()->constrained('list_lks')->onDelete('cascade');
             $table->foreignId('id_upt')->nullable()->constrained('list_upts')->onDelete('cascade');
             $table->foreignId('id_spesies')->nullable()->constrained('list_spesiess')->onDelete('cascade');
