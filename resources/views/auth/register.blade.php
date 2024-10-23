@@ -53,41 +53,45 @@
                         <x-input id="nip" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="nip" :value="old('nip')" required autofocus autocomplete="nip" pattern="[0-9]*" title="Hanya angka diperbolehkan" />    
                     </div>
 
-                    <div>
-                        <x-label for="role" :value="__('Bidang')" class="text-gray-700 font-semibold" />
-                        <select id="role" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" name="role" required autofocus>
-                            <option value="" disabled selected>Pilih Bidang</option>
-                            @foreach($roles as $role)
-                                <option id="{{ $role->slug }}" value="{{ $role->id }}">{{ $role->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
+                            <div>
+                                <x-label for="role" :value="__('Bidang')" class="text-gray-700 font-semibold" />
+                                <select id="role" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" name="role" required autofocus>
+                                    <option value="" hidden>Pilih Bidang</option>
+                                    @foreach($roles as $role)
+                                        <option id="{{ $role->slug }}" value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-                    <div id="typeUPT">
-                        <x-label for="type_upt" value="{{ __('Tipe') }}" class="text-gray-700 font-semibold" />
-                        <select id="typeUPT" name="type_UPT" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500">
-                            <option value="" selected disabled style="color: #a0aec0;">Pilih Tipe</option>
-                            <option value="BBKSDA" {{ old('type_UPT') == 'BBKSDA' ? 'selected' : '' }}>BBKSDA</option>
-                            <option value="BKSDA" {{ old('type_UPT') == 'BKSDA' ? 'selected' : '' }}>BKSDA</option>
-                        </select>
-                    </div>
-                    
-                    <div id="areaInput">
-                        <label for="unit_pelaksana_teknis" class="text-gray-700 font-semibold">Wilayah</label>
-                        <select id="unit_pelaksana_teknis" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500">
-                            <option value="" disabled selected>Select a province</option>
-                        </select>
-                    </div>
-                        
-                                                    
-                    </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                            <div id="typeUPT">
+                                <x-label for="type_upt" value="{{ __('Tipe') }}" class="text-gray-700 font-semibold" />
+                                <select id="typeUPT" name="type_UPT" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500">
+                                    <option value="" selected disabled style="color: #a0aec0;">Pilih Tipe</option>
+                                    <option value="BBKSDA" {{ old('type_UPT') == 'BBKSDA' ? 'selected' : '' }}>BBKSDA</option>
+                                    <option value="BKSDA" {{ old('type_UPT') == 'BKSDA' ? 'selected' : '' }}>BKSDA</option>
+                                </select>
+                            </div>
+                            
+                            <div id="areaInput">
+                                <label for="unit_pelaksana_teknis" class="text-gray-700 font-semibold">Wilayah</label>
+                                <select id="unit_pelaksana_teknis" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500">
+                                    <option value="" disabled selected>Select a province</option>
+                                </select>
+                            </div>                   
+                        </div>
 
-                    <div id="lkInput">
-                        <x-label for="lembaga_konservasi" value="{{ __('Lembaga Konservasi') }}" class="text-gray-700 font-semibold" />
-                        <x-input id="lembaga_konservasi" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="lembaga_konservasi" :value="old('lembaga_konservasi')" autofocus autocomplete="lembaga_konservasi" />
-                    </div>
+                        <div id="lkInput">
+                            <x-label for="lembaga_konservasi" value="{{ __('Lembaga Konservasi') }}" class="text-gray-700 font-semibold" />
+                            
+                            <select id="lembaga_konservasi" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" name="lembaga_konservasi" :value="old('lembaga_konservasi')" autofocus>
+                                <option value="" hidden>Select Lembaga Konservasi</option>
+                                @foreach($list_lks as $lk)
+                                        <option id="{{ $lk->slug }}" value="{{ $lk->id }}">{{ $lk->name }}</option>
+                                    @endforeach
+                            </select>
+                        </div>
 
                     <div id="keeperInput">
                         <x-label for="keeper-search" value="Spesies (Masukkan nama hewan dalam Bahasa Inggris)" class="text-gray-700 font-semibold" />
