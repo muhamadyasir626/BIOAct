@@ -84,18 +84,18 @@ class User extends Authenticatable
     }
     
     public function ListSpesies(){
-        return $this->hasOne(List_Spesies::class);
+        return $this->belongsTo(List_Spesies::class);
     }
 
     public function ListLk(){
-        return $this->hasOne(List_Lk::class);
+        return $this->belongsTo(List_Lk::class);
     }
 
     public function ListUpt(){
-        return $this->hasOne(List_Upt::class);
+        return $this->belongsTo(List_Upt::class);
     }
 
     public function LembagaKonservasi(){
-        return $this->hasOne(Lembaga_Konservasi::class);
+        return $this->belongsTo(Lembaga_Konservasi::class);
     }
 }

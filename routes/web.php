@@ -28,10 +28,12 @@ Route::get('/permission', function(){
 
 Route::get('/register', function(){
     $roles = Role::all();
-    $list_lks = List_Lk::all();
-    $list_upts = List_Upt::all();
+    $list_lks = List_Lk::all()->sort();
+    $list_upts = List_Upt::all()->sort();
     return view('auth.register', compact('roles','list_lks','list_upts'));
 })->name('register');
+
+
 
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])
@@ -42,11 +44,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         //             // return view('dashboard');
         //         })->name('filament.dashboard.pages.dashboard');
 
-        // Route::group(['prefix' => 'dashboard', 'as' => 'filament.'], function () {
-        //     Route::get('/dashboard', [\Filament\Http\Controllers\DashboardController::class, 'index'])
-        //         ->middleware('auth:sanctum') 
-        //         ->name('filament.dashboard.pages.dashboard');
-        // });
+        
     });
 
 Route::get('/dashboard/login', function(){

@@ -9,9 +9,11 @@ class Satwa extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
+    protected $guard =['id'];
 
-    ];
+    // protected $fillable=[
+
+    // ];
 
     public function Lembaga_Konservasi(){
         return $this-> hasMany(Lembaga_konservasi::class);

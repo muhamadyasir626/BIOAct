@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Species;
 use App\Models\Provinsi;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\checkpermission;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });   
 Route::get('/search',[postalcodeAPI::class,'search']);
+Route::get('/check-permission',[checkpermission::class,'check']);
 
 // Route::get('/provinsi', function() {
 //     return response()->json(Provinsi::all());

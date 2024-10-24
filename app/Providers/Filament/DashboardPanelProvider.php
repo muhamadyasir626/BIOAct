@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Models\Role;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\Widgets;
@@ -65,12 +66,14 @@ class DashboardPanelProvider extends PanelProvider
 
         Event::listen(ServingFilament::class, function () use ($panel) {
             $user = Auth::user();
-            
-            if ($user && $user->status_permission == '1') {
+
+            // dd($user->role->name);
+            if ($user && $user->role && $user->status_permission == '1') {
                 $panel->brandName($user->role->tag);
             } else {
                 return Redirect::route('permission');
             }
+            
         });
 
         return $panel;

@@ -169,24 +169,24 @@
                     </div>
                     <div>
                         <x-label for="provinsi" value="{{ __('Provinsi') }}" class="text-gray-700 font-semibold" />
-                        <x-input id="provinsi" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="provinsi" :value="old('provinsi')" required autofocus autocomplete="provinsi" />
+                        <x-input id="provinsi" readonly class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="provinsi" :value="old('provinsi')" required autofocus autocomplete="provinsi" />
                     </div>
                     <div>
                         <x-label for="kabupaten" value="{{ __('Kota/Kabupaten') }}" class="text-gray-700 font-semibold" />
-                        <x-input id="kabupaten" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="kabupaten" :value="old('kabupaten')" required autofocus autocomplete="kabupaten" />
+                        <x-input id="kabupaten" readonly class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="kabupaten" :value="old('kabupaten')" required autofocus autocomplete="kabupaten" />
                     </div>
                     <div>
                         <x-label for="kecamatan" value="{{ __('Kecamatan') }}" class="text-gray-700 font-semibold" />
-                        <x-input id="kecamatan" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="kecamatan" :value="old('kecamatan')" required autofocus autocomplete="kecamatan" />
+                        <x-input id="kecamatan" readonly class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="kecamatan" :value="old('kecamatan')" required autofocus autocomplete="kecamatan" />
                     </div>
                     <div>
                         <x-label for="kelurahan" value="{{ __('Kelurahan') }}" class="text-gray-700 font-semibold" />
-                        <x-input id="kelurahan" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="kelurahan" :value="old('kelurahan')" required autofocus autocomplete="kelurahan" />
+                        <x-input id="kelurahan" readonly class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="kelurahan" :value="old('kelurahan')" required autofocus autocomplete="kelurahan" />
                     </div>
                 </div>
                 <div class="mt-4">
                     <x-label for="alamat_lengkap" value="{{ __('Alamat Lengkap') }}" class="text-gray-700 font-semibold" />
-                    <x-input id="alamat_lengkap" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="alamat_lengkap" :value="old('alamat_lengkap')" required autofocus autocomplete="address" />
+                    <x-input id="alamat_lengkap"  class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="alamat_lengkap" :value="old('alamat_lengkap')" required autofocus autocomplete="address" />
                 </div>
             </div>
 
