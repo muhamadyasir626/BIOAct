@@ -50,7 +50,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
                     <div>
                         <x-label for="nip" value="{{ __('NIP') }}" class="text-gray-700 font-semibold" />
-                        <x-input id="nip" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="nip" :value="old('nip')" required autofocus autocomplete="nip" pattern="[0-9]*" title="Hanya angka diperbolehkan" />    
+                        <x-input id="nip" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="nip" :value="old('nip')" required autofocus autocomplete="nip" pattern="[0-9]*" maxlength="20" title="Hanya angka diperbolehkan" />    
                     </div>
 
                             <div>
@@ -65,38 +65,38 @@
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-                            <div id="typeUPT">
+                            <div id="typeUPT" class="hidden">
                                 <x-label for="type_upt" value="{{ __('Tipe') }}" class="text-gray-700 font-semibold" />
-                                <select id="typeUPT" name="type_UPT" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500">
+                                <select id="typeUPT" name="type_UPT" class="none mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500">
                                     <option value="" selected disabled style="color: #a0aec0;">Pilih Tipe</option>
                                     <option value="BBKSDA" {{ old('type_UPT') == 'BBKSDA' ? 'selected' : '' }}>BBKSDA</option>
                                     <option value="BKSDA" {{ old('type_UPT') == 'BKSDA' ? 'selected' : '' }}>BKSDA</option>
                                 </select>
                             </div>
                             
-                            <div id="areaInput">
+                            <div id="areaInput" class="hidden">
                                 <label for="unit_pelaksana_teknis" class="text-gray-700 font-semibold">Wilayah</label>
-                                <select id="unit_pelaksana_teknis" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500">
+                                <select id="unit_pelaksana_teknis" class="none mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500">
                                     <option value="" disabled selected>Select a province</option>
                                 </select>
                             </div>                   
                         </div>
 
                         <div id="lkInput">
-                            <x-label for="lembaga_konservasi" value="{{ __('Lembaga Konservasi') }}" class="text-gray-700 font-semibold" />
-                            
-                            <select id="lembaga_konservasi" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" name="lembaga_konservasi" :value="old('lembaga_konservasi')" autofocus>
-                                <option value="" hidden>Select Lembaga Konservasi</option>
+                            <x-label for="lembaga_konservasi" value="Lembaga Konservasi" class="text-gray-700 font-semibold" />
+                            <input type="text" id="lembaga_konservasi_input" class="mt-1 w-full border-gray-300 rounded-md" placeholder="Cari Lembaga Konservasi" autocomplete="off" />
+                        
+                            <ul id="lembaga_konservasi_list" class="hidden mt-1 border-gray-300 rounded-md bg-white shadow-lg max-h-60 overflow-auto">
                                 @foreach($list_lks as $lk)
-                                        <option id="{{ $lk->slug }}" value="{{ $lk->id }}">{{ $lk->name }}</option>
-                                    @endforeach
-                            </select>
-                        </div>
+                                    <li class="px-4 py-2 cursor-pointer hover:bg-indigo-500 hover:text-white" data-value="{{ $lk->id }}">{{ $lk->name }}</li>
+                                @endforeach
+                            </ul>
+                        </div> 
 
-                    <div id="keeperInput">
-                        <x-label for="keeper-search" value="Spesies (Masukkan nama hewan dalam Bahasa Inggris)" class="text-gray-700 font-semibold" />
-                        <input type="text" id="keeper-search" name="keeper-search" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" placeholder="Cari Spesies" autocomplete="off" />
-                        <ul id="keeper-dropdown" class="hidden border border-gray-300 mt-1 w-full rounded-md max-h-60 overflow-auto bg-white">
+                    <div id="studkeeperInput" class="hidden">
+                        <x-label for="studkeeper-search" value="Spesies (Masukkan nama hewan dalam Bahasa Inggris)" class="text-gray-700 font-semibold" />
+                        <input type="text" id="studkeeper-search" name="studkeeper-search" class="none mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" placeholder="Cari Spesies" autocomplete="off" />
+                        <ul id="studkeeper-dropdown" class="hidden border border-gray-300 mt-1 w-full rounded-md max-h-60 overflow-auto bg-white">
                         </ul>
                     </div>
                                         
@@ -143,29 +143,18 @@
                         <x-input id="email" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="email" name="email" :value="old('email')" required autocomplete="email" />
                     </div>
 
-                    {{-- <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-                        <div>
-                            <x-label for="password" value="{{ __('Kata Sandi') }}" class="text-gray-700 font-semibold" />
-                            <x-input id="password" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="password" name="password" required autocomplete="new-password" />
-                        </div>
 
-                        <div>
-                            <x-label for="password_confirmation" value="{{ __('Konfirmasi Kata Sandi') }}" class="text-gray-700 font-semibold" />
-                            <x-input id="password_confirmation" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="password" name="password_confirmation" required autocomplete="new-password" />
-                        </div>
-                    </div> --}}
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4 mb-6">
                         <div>
                             <x-label for="password" value="{{ __('Kata Sandi') }}" class="text-gray-700 font-semibold" />
                             <div class="relative">
                                 <x-input id="password" 
-                                    class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500 pr-10" 
+                                    class=" absolute block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500 pr-10" 
                                     type="password" 
                                     name="password" 
                                     required 
                                     autocomplete="new-password" />
-                                <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 flex items-center pr-3">
+                                <button type="button" id="togglePassword" class="absolute inset-y-0 mt-4 me-2 right-0 flex items-center pr-3">
                                     <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12s2.5-4 9-4 9 4 9 4-2.5 4-9 4-9-4-9-4z" />
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -178,12 +167,12 @@
                             <x-label for="password_confirmation" value="{{ __('Konfirmasi Kata Sandi') }}" class="text-gray-700 font-semibold" />
                             <div class="relative">
                                 <x-input id="password_confirmation" 
-                                    class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500 pr-10" 
+                                    class="absolute block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500 pr-10" 
                                     type="password" 
                                     name="password_confirmation" 
                                     required 
                                     autocomplete="new-password" />
-                                <button type="button" id="togglePasswordConfirmation" class="absolute inset-y-0 right-0 flex items-center pr-3">
+                                <button type="button" id="togglePasswordConfirmation" class="absolute inset-y-0 mt-4 me-2 right-0 flex items-center pr-3">
                                     <svg id="eyeIconConfirmation" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12s2.5-4 9-4 9 4 9 4-2.5 4-9 4-9-4-9-4z" />
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -202,28 +191,28 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
                     <div>
                         <x-label for="kode_pos" value="{{ __('Kode Pos') }}" class="text-gray-700 font-semibold" />
-                        <x-input id="kode_pos" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="kode_pos" :value="old('kode_pos')" required autofocus autocomplete="kode_pos" pattern="[0-9]*" title="Hanya angka diperbolehkan" />
+                        <x-input id="kode_pos" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="kode_pos" :value="old('kode_pos')" required autofocus autocomplete="kode_pos" pattern="[0-9]*" title="Hanya angka diperbolehkan" placeholder="Wajib di isi" />
                     </div>
                     <div>
                         <x-label for="provinsi" value="{{ __('Provinsi') }}" class="text-gray-700 font-semibold" />
-                        <x-input id="provinsi" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="provinsi" :value="old('provinsi')" required autofocus autocomplete="provinsi" />
+                        <x-input id="provinsi" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="provinsi" :value="old('provinsi')" required autofocus autocomplete="provinsi" placeholder="Terisi otomatis"/>
                     </div>
                     <div>
                         <x-label for="kabupaten" value="{{ __('Kota/Kabupaten') }}" class="text-gray-700 font-semibold" />
-                        <x-input id="kabupaten" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="kabupaten" :value="old('kabupaten')" required autofocus autocomplete="kabupaten" />
+                        <x-input id="kabupaten" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="kabupaten" :value="old('kabupaten')" required autofocus autocomplete="kabupaten" placeholder="Terisi otomatis" />
                     </div>
                     <div>
                         <x-label for="kecamatan" value="{{ __('Kecamatan') }}" class="text-gray-700 font-semibold" />
-                        <x-input id="kecamatan" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="kecamatan" :value="old('kecamatan')" required autofocus autocomplete="kecamatan" />
+                        <x-input id="kecamatan" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="kecamatan" :value="old('kecamatan')" required autofocus autocomplete="kecamatan" placeholder="Terisi otomatis"/>
                     </div>
                     <div>
                         <x-label for="kelurahan" value="{{ __('Kelurahan') }}" class="text-gray-700 font-semibold" />
-                        <x-input id="kelurahan" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="kelurahan" :value="old('kelurahan')" required autofocus autocomplete="kelurahan" />
+                        <x-input id="kelurahan" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="kelurahan" :value="old('kelurahan')" required autofocus autocomplete="kelurahan" placeholder="Terisi otomatis"/>
                     </div>
                 </div>
                 <div class="mt-4">
                     <x-label for="alamat_lengkap" value="{{ __('Alamat Lengkap') }}" class="text-gray-700 font-semibold" />
-                    <x-input id="alamat_lengkap" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="alamat_lengkap" :value="old('alamat_lengkap')" required autofocus autocomplete="address" />
+                    <x-input id="alamat_lengkap" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="text" name="alamat_lengkap" :value="old('alamat_lengkap')" required autofocus autocomplete="address" placeholder="Wajib di isi"/>
                 </div>
             </div>
 
