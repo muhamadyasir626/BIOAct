@@ -4,14 +4,14 @@ function toggleinput() {
     var roleSelect = document.getElementById("role");
     var areaInput = document.getElementById("areaInput");
     var lkInput = document.getElementById("lkInput");
-    var keeperInput = document.getElementById("keeperInput");
+    var studkeeperInput = document.getElementById("studkeeperInput");
     var typeUPT = document.getElementById("typeUPT");
 
     var selectedOptionId = roleSelect.options[roleSelect.selectedIndex].id;
 
     areaInput.style.display = "none";
     lkInput.style.display = "none";
-    keeperInput.style.display = "none";
+    studkeeperInput.style.display = "none";
     typeUPT.style.display = "none";
 
     if (
@@ -20,12 +20,11 @@ function toggleinput() {
         selectedOptionId === "staff_keeper"
     ) {
         lkInput.style.display = "block";
-        lkInput.style.display = "block";
     } else if (selectedOptionId === "unit_pelaksana_teknis") {
         typeUPT.style.display = "block";
         areaInput.style.display = "block";
-    } else if (selectedOptionId === "keeper") {
-        keeperInput.style.display = "block";
+    } else if (selectedOptionId === "studbook_keeper") {
+        studkeeperInput.style.display = "block";
     }
 }
 
@@ -83,6 +82,8 @@ function debounce(func, wait) {
     };
 }
 
+
+//fetch animals buat studbook keeper
 let lastQuery = "";
 let isDropdownActive = false;
 const speciesData = [];
@@ -123,7 +124,7 @@ function fetchSpeciesSuggest(query) {
 }
 
 function populateDropdown(species) {
-    const dropdown = document.getElementById("keeper-dropdown");
+    const dropdown = document.getElementById("studkeeper-dropdown");
     dropdown.innerHTML = "";
 
     if (species.length === 0) {
@@ -136,7 +137,7 @@ function populateDropdown(species) {
         listItem.classList.add("cursor-pointer", "p-2", "hover:bg-gray-100");
         listItem.textContent = speciesObj.scientificName;
         listItem.addEventListener("click", function () {
-            document.getElementById("keeper-search").value =
+            document.getElementById("studkeeper-search").value =
                 speciesObj.scientificName;
             hideDropdown();
         });
@@ -146,18 +147,20 @@ function populateDropdown(species) {
     dropdown.classList.remove("hidden");
 }
 
-document.getElementById("keeper-search").addEventListener("input", function () {
-    const query = this.value.toLowerCase();
-    if (query.length > 0) {
-        fetchSpeciesSuggest(query);
-    } else {
-        hideDropdown();
-    }
-});
+document
+    .getElementById("studkeeper-search")
+    .addEventListener("input", function () {
+        const query = this.value.toLowerCase();
+        if (query.length > 0) {
+            fetchSpeciesSuggest(query);
+        } else {
+            hideDropdown();
+        }
+    });
 
 document.addEventListener("click", function (event) {
-    const dropdown = document.getElementById("keeper-dropdown");
-    const searchInput = document.getElementById("keeper-search");
+    const dropdown = document.getElementById("studkeeper-dropdown");
+    const searchInput = document.getElementById("studkeeper-search");
 
     if (
         !isDropdownActive &&
@@ -169,7 +172,7 @@ document.addEventListener("click", function (event) {
 });
 
 function hideDropdown() {
-    const dropdown = document.getElementById("keeper-dropdown");
+    const dropdown = document.getElementById("studkeeper-dropdown");
     dropdown.classList.add("hidden");
 }
 
@@ -177,6 +180,7 @@ window.onload = function () {
     toggleinput();
 };
 
+//fetch data provinsi
 fetch("https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json")
     .then((response) => response.json())
     .then((provinces) => {
@@ -195,6 +199,8 @@ fetch("https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json")
     })
     .catch((error) => console.error("Error fetching provinces:", error));
 
+
+//show and hide password
 document
     .getElementById("togglePassword")
     .addEventListener("click", function () {
@@ -202,10 +208,10 @@ document
         const eyeIcon = document.getElementById("eyeIcon");
         if (passwordInput.type === "password") {
             passwordInput.type = "text";
-            eyeIcon.setAttribute("stroke", "green"); // Ubah warna ikon
+            eyeIcon.setAttribute("stroke", "green"); 
         } else {
             passwordInput.type = "password";
-            eyeIcon.setAttribute("stroke", "gray"); // Reset warna ikon
+            eyeIcon.setAttribute("stroke", "gray"); 
         }
     });
 
@@ -220,9 +226,44 @@ document
         );
         if (passwordConfirmationInput.type === "password") {
             passwordConfirmationInput.type = "text";
-            eyeIconConfirmation.setAttribute("stroke", "green"); // Ubah warna ikon
+            eyeIconConfirmation.setAttribute("stroke", "green"); 
         } else {
             passwordConfirmationInput.type = "password";
-            eyeIconConfirmation.setAttribute("stroke", "gray"); // Reset warna ikon
+            eyeIconConfirmation.setAttribute("stroke", "gray"); 
         }
     });
+
+//lk filter dropdown
+const inputField = document.getElementById("lembaga_konservasi_input");
+const suggestionList = document.getElementById("lembaga_konservasi_list");
+const options = suggestionList.getElementsByTagName("li");
+
+inputField.addEventListener("input", function () {
+    const filter = inputField.value.toLowerCase();
+    let hasResults = false;
+
+    for (let i = 0; i < options.length; i++) {
+        const optionText = options[i].textContent || options[i].innerText;
+        if (optionText.toLowerCase().indexOf(filter) > -1) {
+            options[i].style.display = "";
+            hasResults = true;
+        } else {
+            options[i].style.display = "none";
+        }
+    }
+
+    suggestionList.classList.toggle("hidden", !hasResults);
+});
+
+for (let i = 0; i < options.length; i++) {
+    options[i].addEventListener("click", function () {
+        inputField.value = options[i].textContent;
+        suggestionList.classList.add("hidden");
+    });
+}
+
+document.addEventListener("click", function (e) {
+    if (!inputField.contains(e.target) && !suggestionList.contains(e.target)) {
+        suggestionList.classList.add("hidden");
+    }
+});
