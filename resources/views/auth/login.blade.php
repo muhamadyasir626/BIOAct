@@ -22,20 +22,31 @@
                     <x-input id="email" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
                 </div>
 
-                <div class="mt-4">
-                    <x-label for="password" value="{{ __('Password') }}" class="text-gray-700 font-semibold" />
-                    <x-input id="password" class="block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500" type="password" name="password" required autocomplete="current-password" />
+                <div class="relative mt-4 mb-4">
+                    <x-label for="email" value="{{ __('Kata sandi') }}" class="text-gray-700 font-semibold" />
+                    <x-input id="password" 
+                        class=" absolute block mt-1 w-full border-gray-300 rounded-md focus:border-indigo-500 focus:ring-indigo-500 pr-10" 
+                        type="password" 
+                        name="password" 
+                        required 
+                        autocomplete="new-password" />
+                    <button type="button" id="togglePassword" class="absolute inset-y-0 mt-4 me-2 right-0 flex items-center pr-3">
+                        <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12s2.5-4 9-4 9 4 9 4-2.5 4-9 4-9-4-9-4z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </button>
                 </div>
 
                 <!-- Remember Me Checkbox -->
-                <div class="block mt-4">
+                <div class="block mt-4" style="margin-top: 50px">
                     <label for="remember_me" class="flex items-center">
                         <x-checkbox id="remember_me" name="remember" class="text-indigo-600" />
                         <span class="ms-2 text-sm text-gray-600">{{ __('Ingat saya') }}</span>
                     </label>
                 </div>
 
-                <div class="flex flex-col items-center justify-between mt-6 gap-4">
+                <div class="flex flex-col items-center justify-between gap-4" style="margin-top: 20px">
                     <x-button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-md transition duration-150">
                         {{ __('Masuk') }}
                     </x-button>                
@@ -54,5 +65,6 @@
                     </a>
                 </div>
             </form>
+            <script src="{{ asset('js/login.js') }}"></script>
         </x-authentication-card>
     </x-guest-layout>
