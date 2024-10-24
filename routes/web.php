@@ -53,4 +53,16 @@ Route::get('/dashboard/login', function(){
         return redirect('/');
     });
 
-
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])
+    ->group(function () {
+        // Route::get('/dashboard', function () {
+        //     return view('dashboard');
+        // })->name('dashboard');
+        // 
+        // Route::group(['prefix' => 'dashboard', 'as' => 'filament.'], function () {
+        //     Route::get('/dashboard', [\Filament\Http\Controllers\DashboardController::class, 'index'])
+        //         ->middleware('auth:sanctum') // Memastikan autentikasi secara eksplisit
+        //         ->name('dashboard');
+        //     Route::post('/dashboard/logout', [CustomAuthController::class, 'logout'])->name('filament.auth.logout');
+        // });
+    });
